@@ -1,0 +1,17 @@
+type 'a btree = Empty | Node of 'a * 'a btree * 'a btree
+
+let rec size_Calc btree =
+(*This function is to count how many nodes a tree has*)
+  match btree with
+    Empty -> 0
+  | Node(y, left, right) ->
+     size_Calc (left) + size_Calc (right) + 1
+;;
+
+let rec getHeight btree = 
+(*This function is to get the height of a tree*)
+  match btree with
+    Empty -> 0
+  | Node (x, left, right) ->
+     1 + max (getHeight(left)) (getHeight(right))
+;;
