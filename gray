@@ -1,0 +1,12 @@
+let rec generateGrayCode = function
+  |0 -> []
+  |1 -> ["0"; "1"]
+  |n ->
+    let tempList = generateGrayCode (n - 1) in
+      (**
+      *Using List.map, insert 0 into each element of the list of (N-1)-bit gray code, and get L1;
+      *Using List.map, insert 1 into each element of the reverse list of (n-1)-bit gray code, and get L2;
+      *Using List.append, combine L1 and L2 to get the list of N-bit gray code, and return it by default
+      *)
+      List.append (List.map (function s1 -> "0" ^ s1) tempList) (List.map (function s2 -> "1" ^ s2) (List.rev tempList))
+;;
